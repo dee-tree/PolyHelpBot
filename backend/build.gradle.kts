@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     kotlin("jvm")
     application
+    kotlin("plugin.serialization") version "1.6.10"
 }
 
 group = "com.techproj"
@@ -14,6 +15,9 @@ file("settings.properties").inputStream().let { props.load(it) }
 
 
 repositories {
+    flatDir {
+        dirs(File(rootDir, "libs").absoluteFile)
+    }
     mavenCentral()
 }
 
@@ -23,9 +27,10 @@ application {
     mainClass.set(botMainClassName)
 }
 
-val tgbotapiVersion = "0.38.12"
+val tgbotapiVersion = "0.38.20"
 
 dependencies {
+    // LOCAL VERSION
     implementation("dev.inmo:tgbotapi:$tgbotapiVersion")
     implementation("com.google.firebase:firebase-admin:8.1.0")
 

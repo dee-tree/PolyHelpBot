@@ -4,31 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b44d41c9-0433-421a-aaba-44be916a01b8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/Command.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/Text.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/data/GeoLocation.kt" afterDir="false" />
+    <list default="true" id="b44d41c9-0433-421a-aaba-44be916a01b8" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/BaseRepository.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/Repository.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/RepositoryImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/FSM.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/locations/LocationsRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/locations/LocationsRepositoryImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/locations/Place.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/state/StateRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/state/StateRepositoryImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExpectRootCommandOrTextState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/LocationsState.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/State.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/StatesManagerRepo.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/doc.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/main.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/util.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +38,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
+        <option value="Kotlin Object" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -68,6 +64,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;W:/Kotlin/Projects/PolyHelpBot/libs&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -75,6 +72,16 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Settings.Markdown&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="W:\Kotlin\Projects\PolyHelpBot\libs" />
+      <recent name="W:\Kotlin\Projects\PolyHelpBot\backend\src\main\kotlin\com\techproj\polyhelpbot\fsm" />
+      <recent name="W:\Kotlin\Projects\PolyHelpBot\backend\src\main\kotlin\com\techproj\polyhelpbot\fsm\locations" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.techproj.polyhelpbot.db.locations" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle :backend:run" />
@@ -128,8 +135,32 @@
       <workItem from="1650196394726" duration="3327000" />
       <workItem from="1650218341090" duration="18931000" />
       <workItem from="1650273463949" duration="3292000" />
-      <workItem from="1650302142369" duration="2856000" />
+      <workItem from="1650302142369" duration="12035000" />
+      <workItem from="1650361309715" duration="20392000" />
+      <workItem from="1650471737605" duration="20000" />
+      <workItem from="1650578219095" duration="259000" />
+      <workItem from="1651228208354" duration="1217000" />
+      <workItem from="1651230352570" duration="5003000" />
+      <workItem from="1651256669241" duration="15695000" />
+      <workItem from="1651312944124" duration="6254000" />
+      <workItem from="1651353506153" duration="4681000" />
+      <workItem from="1651399091557" duration="1993000" />
+      <workItem from="1651417962993" duration="10807000" />
+      <workItem from="1651444658375" duration="611000" />
+      <workItem from="1651489235538" duration="7110000" />
+      <workItem from="1651519473517" duration="637000" />
+      <workItem from="1651571154767" duration="10607000" />
+      <workItem from="1651605039557" duration="3992000" />
+      <workItem from="1651610801830" duration="2595000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1650305080837</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650305080837</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +176,253 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/db/locations/LocationsRepositoryImpl.kt</url>
+          <line>12</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/UpdatableStatesMachine.kt</url>
+          <line>42</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/StatesMachine.kt</url>
+          <line>119</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/StatesMachine.kt</url>
+          <line>105</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/StatesMachine.kt</url>
+          <line>68</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/StatesMachine.kt</url>
+          <line>69</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/managers/DefaultStatesManager.kt</url>
+          <line>77</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/managers/DefaultStatesManager.kt</url>
+          <line>85</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>93</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>82</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>80</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>74</line>
+          <log-expression expression="&quot;call statesManager.update() $state to $newState&quot;" language="kotlin" mode="CODE_FRAGMENT" />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>86</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>72</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>61</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>83</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/managers/DefaultStatesManager.kt</url>
+          <line>72</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>27</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>123</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>134</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>131</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>144</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>107</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>29</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>125</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.utils-jvm/0.38.19/584552de42322d419397e109f9b617e5ced4aba/tgbotapi.utils-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/utils/updates/retrieving/LongPolling.kt</url>
+          <line>69</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>140</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.core-jvm/0.38.19/f5daa02ae8dc61563a2a3fddae4f2c51958c7842/tgbotapi.core-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/updateshandlers/FlowsUpdatesFilter.kt</url>
+          <line>41</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.core-jvm/0.38.19/f5daa02ae8dc61563a2a3fddae4f2c51958c7842/tgbotapi.core-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/updateshandlers/FlowsUpdatesFilter.kt</url>
+          <line>88</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.utils-jvm/0.38.19/584552de42322d419397e109f9b617e5ced4aba/tgbotapi.utils-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/utils/updates/retrieving/LongPolling.kt</url>
+          <line>89</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.utils-jvm/0.38.19/584552de42322d419397e109f9b617e5ced4aba/tgbotapi.utils-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/utils/updates/retrieving/LongPolling.kt</url>
+          <line>87</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>70</line>
+          <properties class="dev.inmo.tgbotapi.extensions.behaviour_builder.DefaultBehaviourContextWithFSM" method="start">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.16/9addc0c8b56ca975e4fbfad2b61da9f7ba510612/tgbotapi.behaviour_builder.fsm-jvm-0.38.16-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>60</line>
+          <properties class="dev.inmo.tgbotapi.extensions.behaviour_builder.DefaultBehaviourContextWithFSM" method="getContextUpdatesFlow">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.coroutines-jvm/0.9.24/9acd8138f5f58412313308e90118162a2ca8af1a/micro_utils.coroutines-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/coroutines/FlowSubscription.kt</url>
+          <line>12</line>
+          <properties method="subscribe">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/StatesMachine.kt</url>
+          <line>75</line>
+          <properties class="dev.inmo.micro_utils.fsm.common.DefaultStatesMachine" method="performStateUpdate">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>110</line>
+          <properties class="dev.inmo.tgbotapi.extensions.behaviour_builder.DefaultBehaviourContextWithFSM" method="handleState">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-field">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.19/74d02052e68cfc5e05776c660e53df0b1abdd6d7/tgbotapi.behaviour_builder.fsm-jvm-0.38.19-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>102</line>
+          <properties myFieldName="updatesFlows" myClassName="dev.inmo.tgbotapi.extensions.behaviour_builder.DefaultBehaviourContextWithFSM" />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
