@@ -1,5 +1,3 @@
 package com.techproj.polyhelpbot
 
-
-//fun String.bold(): String = "**$this**"
-//fun Text.bold(): Text = Text("**${this.value}**")
+fun dev.inmo.tgbotapi.types.ChatId.toChatId(): com.techproj.polyhelpbot.ChatId = this.chatId

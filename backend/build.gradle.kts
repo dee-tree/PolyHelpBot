@@ -3,21 +3,19 @@ import java.util.Properties
 plugins {
     kotlin("jvm")
     application
-    kotlin("plugin.serialization") version "1.6.10"
+    kotlin("plugin.serialization")
 }
 
 group = "com.techproj"
 version = "1.0-SNAPSHOT"
 
 val props = Properties()
-require(file("settings.properties").exists()) { "File settings.properties must exist!" }
-file("settings.properties").inputStream().let { props.load(it) }
+val secretPropertiesFile = File(rootDir, "settings.properties")
+require(secretPropertiesFile.exists()) { "File settings.properties must exist!" }
+secretPropertiesFile.inputStream().let { props.load(it) }
 
 
 repositories {
-    flatDir {
-        dirs(File(rootDir, "libs").absoluteFile)
-    }
     mavenCentral()
 }
 
@@ -27,12 +25,14 @@ application {
     mainClass.set(botMainClassName)
 }
 
-val tgbotapiVersion = "0.38.20"
+val tgbotapiVersion = "0.38.21"
 
 dependencies {
-    // LOCAL VERSION
+
     implementation("dev.inmo:tgbotapi:$tgbotapiVersion")
-    implementation("com.google.firebase:firebase-admin:8.1.0")
+
+    implementation(project(":db"))
+    implementation(project(":core"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
@@ -58,7 +58,6 @@ tasks.getByName<JavaExec>("run") {
     dependsOn("fatJar")
     args(
         props["BOT_API_KEY"],
-        props["FIREBASE_OPTIONS_FILE"],
-        props["DATABASE_REFERENCE"]
+        props["DATABASE_CONFIGURATION"]
     )
 }

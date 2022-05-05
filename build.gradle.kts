@@ -2,6 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.6.20"
+
+    kotlin("plugin.serialization") apply false version "1.6.10"
 }
 
 group = "com.techproj"

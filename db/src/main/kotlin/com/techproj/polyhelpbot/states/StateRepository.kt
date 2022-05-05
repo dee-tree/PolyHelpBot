@@ -1,8 +1,7 @@
-package com.techproj.polyhelpbot.db.state
+package com.techproj.polyhelpbot.states
 
-import com.techproj.polyhelpbot.db.BasePath
-import com.techproj.polyhelpbot.fsm.ChatState
-import dev.inmo.tgbotapi.types.ChatId
+import com.techproj.polyhelpbot.ChatId
+import com.techproj.polyhelpbot.ChatState
 
 interface StateRepository {
     suspend fun getAllStates(): List<ChatState>
@@ -10,9 +9,6 @@ interface StateRepository {
     suspend fun removeState(state: ChatState)
     suspend fun getState(chatId: ChatId): ChatState?
 
-    object Path {
-        fun state(chatId: ChatId) = "${BasePath.chats}/${chatId.chatId}/state"
-    }
 }
 
 suspend fun ChatState.save(repo: StateRepository) = repo.saveState(this)
