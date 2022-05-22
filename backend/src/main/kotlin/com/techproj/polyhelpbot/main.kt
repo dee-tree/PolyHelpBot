@@ -1,14 +1,17 @@
 package com.techproj.polyhelpbot
 
 import com.techproj.polyhelpbot.fsm.BaseCommands
+import com.techproj.polyhelpbot.fsm.BaseText
 import com.techproj.polyhelpbot.fsm.StatesManagerRepo
 import com.techproj.polyhelpbot.fsm.register
 import dev.inmo.micro_utils.fsm.common.managers.DefaultStatesManager
 import dev.inmo.tgbotapi.extensions.api.send.sendMessage
 import dev.inmo.tgbotapi.extensions.behaviour_builder.telegramBotWithBehaviourAndFSMAndStartLongPolling
+import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onCommand
 import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onText
 import dev.inmo.tgbotapi.extensions.utils.extensions.parseCommandsWithParams
 import dev.inmo.tgbotapi.types.MessageEntity.textsources.BotCommandTextSource
+import dev.inmo.tgbotapi.types.ParseMode.MarkdownParseMode
 import dev.inmo.tgbotapi.types.message.content.TextContent
 import dev.inmo.tgbotapi.types.toChatId
 import io.ktor.utils.io.*
@@ -53,15 +56,20 @@ fun main(args: Array<String>) {
                     restoredChain.enterText = it.content.text
                     startChain(restoredChain)
                 } ?: run {
-                    println("restored chain is null`")
+                    println("restored chain is null")
                     if (it.content.isCommand(BaseCommands.start)) {
-                        startChain(ExpectRootCommandOrAnswerState(it.chat.id.toChatId()))
+                        sendMessage(it.chat.id, BaseText.helloMessage, parseMode = MarkdownParseMode)
+                        startChain(ExpectRootCommandOrAnswerState(it.chat.id.toChatId(), silentEnter = true))
                     }
                 }
             }
 
+            onCommand(BaseCommands.help.command) {
+                sendMessage(it.chat.id, BaseText.helpMessage, parseMode = MarkdownParseMode)
+            }
 
-            ExpectRootCommandOrAnswerState.register(this)
+
+            ExpectRootCommandOrAnswerState.register(this, repo)
             LocationsState.register(this, repo)
 
         }.second.join()

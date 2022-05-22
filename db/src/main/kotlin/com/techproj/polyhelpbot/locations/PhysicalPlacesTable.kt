@@ -4,7 +4,7 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 
 internal object PhysicalPlacesTable : IntIdTable() {
 
-    val name = varchar("name", 150)
+    val name = varchar("name", 255)
     val address = varchar("address", 255)
     val help = varchar("help", 255).nullable()
 

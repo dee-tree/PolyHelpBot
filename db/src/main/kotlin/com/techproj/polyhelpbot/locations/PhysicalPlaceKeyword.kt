@@ -8,8 +8,8 @@ import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
 
 internal object PhysicalPlaceKeywordsTable : IdTable<Keyword>() {
-    val keyword = varchar("keyword", 50).uniqueIndex()
-    override val id: Column<EntityID<Keyword>> = varchar("id", 50).entityId()
+    val keyword = varchar("keyword", 255).uniqueIndex()
+    override val id: Column<EntityID<Keyword>> = varchar("id", 255).entityId()
 
     override val primaryKey: PrimaryKey = PrimaryKey(id)
 }

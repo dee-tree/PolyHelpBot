@@ -1,6 +1,7 @@
 package com.techproj.polyhelpbot.fsm
 
 import com.techproj.polyhelpbot.*
+import com.techproj.polyhelpbot.questions.repo.UserQuestionsRepository
 import dev.inmo.tgbotapi.extensions.api.bot.setMyCommands
 import dev.inmo.tgbotapi.extensions.api.send.sendMessage
 import dev.inmo.tgbotapi.extensions.behaviour_builder.BehaviourContextWithFSM
@@ -9,28 +10,32 @@ import dev.inmo.tgbotapi.extensions.behaviour_builder.strictlyOn
 import dev.inmo.tgbotapi.extensions.utils.types.buttons.replyKeyboard
 import dev.inmo.tgbotapi.extensions.utils.types.buttons.row
 import dev.inmo.tgbotapi.types.BotCommand
+import dev.inmo.tgbotapi.types.ParseMode.MarkdownParseMode
 import dev.inmo.tgbotapi.types.buttons.SimpleKeyboardButton
 import dev.inmo.tgbotapi.types.message.content.TextContent
 import dev.inmo.tgbotapi.types.toChatId
 import dev.inmo.tgbotapi.utils.extensions.makeString
 
-fun ExpectRootCommandOrAnswerState.Companion.register(fsmBuilder: BehaviourContextWithFSM<ChatState>) {
+fun ExpectRootCommandOrAnswerState.Companion.register(fsmBuilder: BehaviourContextWithFSM<ChatState>, repository: UserQuestionsRepository) {
     with(fsmBuilder) {
-        strictlyOn<ExpectRootCommandOrAnswerState, ChatState>() {
-            println("In expect state!")
-            setMyCommands(BotCommand(LocationsState.Commands.where.command, "Подскажу, что где находится"))
+        strictlyOn<ExpectRootCommandOrAnswerState, ChatState>() { state ->
+            setMyCommands(
+                BotCommand(LocationsState.Commands.where.command, "Подскажу, что где находится"),
+                BotCommand(BaseCommands.help.command, "Не знаешь, как со мной общаться?")
+            )
 
-            if (!it.silentEnter) {
+            if (!state.silentEnter) {
                 sendMessage(
-                    it.context.toChatId(),
+                    state.context.toChatId(),
                     ExpectRootCommandOrAnswerState.Text.chooseCommandOrTextAndIWillHelpYou,
+                    parseMode = MarkdownParseMode,
                     replyMarkup = replyKeyboard(resizeKeyboard = true) {
                         row {
                             +SimpleKeyboardButton(LocationsState.Text.whereLocates.makeString())
                         }
                     })
             } else {
-                it.silentEnter = false
+                state.silentEnter = false
 
                 replyKeyboard(resizeKeyboard = true) {
                     row {
@@ -41,14 +46,24 @@ fun ExpectRootCommandOrAnswerState.Companion.register(fsmBuilder: BehaviourConte
 
 
             val userText =
-                it.enterText?.let { enterText -> it.enterText = null; TextContent(enterText) }
-                    ?: waitText().first()
+                state.enterText?.let { enterText -> state.enterText = null; TextContent(enterText) }
+                    ?: waitText(filter = { it.chat.id == state.context.toChatId() }).first()
+
+            val question = repository.searchQuestion(userText.text)
+
+            question?.answer?.let { answer ->
+                sendMessage(state.context.toChatId(), answer, parseMode = MarkdownParseMode,)
+            } //?: run { sendMessage(state.context.toChatId(), "Я тебя не понимаю. Уточни свой вопрос") }
 
             when {
-                userText.isCommand(LocationsState.Commands.where) -> LocationsState(it.context)
-                userText.text == LocationsState.Text.whereLocates.makeString() -> LocationsState(it.context)
-                userText.isCommand(BaseCommands.stop) -> StopState(it.context)
-                else -> it
+                userText.isCommand(LocationsState.Commands.where) -> LocationsState(state.context)
+                userText.text == LocationsState.Text.whereLocates.makeString() -> LocationsState(state.context)
+                userText.isCommand(BaseCommands.stop) -> StopState(state.context)
+
+                question?.answer != null -> { sendMessage(state.context.toChatId(), "Что-то еще?"); state.toExpectRootCommandOrAnswerState(silentEnter = true) }
+                question?.answerStateId != null -> ChatState.make(question.answerStateId!!, state.context, enterText = question.answerStateTextEnter)
+
+                else -> { sendMessage(state.context.toChatId(), "Я тебя не понимаю. Уточни свой вопрос"); state.toExpectRootCommandOrAnswerState(silentEnter = true)}
             }
 
         }
@@ -63,7 +78,7 @@ val ExpectRootCommandOrAnswerState.Companion.Commands: ExpectRootCommandOrAnswer
     get() = ExpectRootCommandOrAnswerCommands
 
 object ExpectRootCommandOrAnswerText {
-    val chooseCommandOrTextAndIWillHelpYou = "Выбери предложенную команду, и я постараюсь тебе помочь"
+    const val chooseCommandOrTextAndIWillHelpYou = "Напиши мне свой вопрос или выбери предложенную команду, и я постараюсь тебе помочь"
 }
 
 object ExpectRootCommandOrAnswerCommands {

@@ -8,9 +8,9 @@ import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
 
 internal object PhysicalPlaceLabelsTable : IdTable<Label>() {
-    val name = varchar("name", 50).uniqueIndex()
+    val name = varchar("name", 255).uniqueIndex()
 
-    override val id: Column<EntityID<Label>> = varchar("id", 50).entityId()
+    override val id: Column<EntityID<Label>> = varchar("id", 255).entityId()
 
     override val primaryKey: PrimaryKey = PrimaryKey(id)
 

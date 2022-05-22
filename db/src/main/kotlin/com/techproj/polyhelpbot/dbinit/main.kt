@@ -3,6 +3,11 @@ package com.techproj.polyhelpbot.dbinit
 import com.techproj.polyhelpbot.BaseRepository
 import com.techproj.polyhelpbot.locations.*
 import com.techproj.polyhelpbot.locations.PhysicalPlaceDAO.Companion.newDAO
+import com.techproj.polyhelpbot.questions.UserQuestionDAO.Companion.newDAO
+import com.techproj.polyhelpbot.questions.UserQuestionKeywordDAO
+import com.techproj.polyhelpbot.questions.UserQuestionKeywordsAssociationTable
+import com.techproj.polyhelpbot.questions.UserQuestionsKeywordsTable
+import com.techproj.polyhelpbot.questions.UserQuestionsTable
 import com.techproj.polyhelpbot.states.StatesTable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
@@ -34,6 +39,10 @@ fun main(args: Array<String>) {
             PhysicalPlaceLabelsAssociationTable,
             PhysicalPlaceKeywordsTable,
             PhysicalPlaceKeywordsAssociationTable,
+
+            UserQuestionsTable,
+            UserQuestionsKeywordsTable,
+            UserQuestionKeywordsAssociationTable
         )
 
         SchemaUtils.create(
@@ -44,18 +53,29 @@ fun main(args: Array<String>) {
             PhysicalPlaceKeywordsTable,
             PhysicalPlaceKeywordsAssociationTable,
 
+            UserQuestionsTable,
+            UserQuestionsKeywordsTable,
+            UserQuestionKeywordsAssociationTable,
+
             // dynamic tables
             StatesTable
         )
 
 
         config.places.forEach { place ->
-            val dao = transaction { place.newDAO() }
-            val keywords = transaction { place.keywords.map { PhysicalPlaceKeywordDAO.newDAO(it) } }
-            val labels = transaction { place.labels.map { PhysicalPlaceLabelDAO.newDAO(it) } }
+            val placeDAO = transaction { place.newDAO() }
+            val placeKeywords = transaction { place.keywords.map { PhysicalPlaceKeywordDAO.findById(it) ?: PhysicalPlaceKeywordDAO.newDAO(it) } }
+            val placeLabels = transaction { place.labels.map { PhysicalPlaceLabelDAO.findById(it) ?: PhysicalPlaceLabelDAO.newDAO(it) } }
 
-            dao.keywords = SizedCollection(keywords)
-            dao.labels = SizedCollection(labels)
+            placeDAO.keywords = SizedCollection(placeKeywords)
+            placeDAO.labels = SizedCollection(placeLabels)
+        }
+
+        config.questions.forEach { question ->
+            val questionDAO = transaction { question.newDAO() }
+            val questionKeywords = transaction { question.keywords.map { UserQuestionKeywordDAO.findById(it) ?: UserQuestionKeywordDAO.newDAO(it) } }
+
+            questionDAO.keywords = SizedCollection(questionKeywords)
         }
 
     }

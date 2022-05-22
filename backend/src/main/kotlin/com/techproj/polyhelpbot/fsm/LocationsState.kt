@@ -4,6 +4,7 @@ import com.techproj.polyhelpbot.ChatState
 import com.techproj.polyhelpbot.LocationsState
 import com.techproj.polyhelpbot.isCommand
 import com.techproj.polyhelpbot.locations.LocationsRepository
+import com.techproj.polyhelpbot.toChatId
 import dev.inmo.tgbotapi.extensions.api.bot.setMyCommands
 import dev.inmo.tgbotapi.extensions.api.send.sendMessage
 import dev.inmo.tgbotapi.extensions.api.send.sendStaticLocation
@@ -27,15 +28,18 @@ fun LocationsState.Companion.register(
     repo: LocationsRepository
 ) {
     with(fsmBuilder) {
-        strictlyOn<LocationsState, ChatState> {
+        strictlyOn<LocationsState, ChatState> { state ->
             val places = repo.getPlacesNames()
 
-            setMyCommands(BotCommand(BaseCommands.back.command, "Вернуться на шаг назад"))
+            setMyCommands(
+                BotCommand(BaseCommands.back.command, "Вернуться на шаг назад"),
+                BotCommand(BaseCommands.help.command, "Не знаешь, как со мной общаться?")
+            )
 
-            if (!it.silentEnter) {
+            if (!state.silentEnter) {
                 this.sendMessage(
-                    it.context.toChatId(),
-                    "Я могу сказать, что где находится! Выбери из списка интересующее место или введи ${BaseCommands.back.asText}, чтобы вернуться на шаг назад",
+                    state.context.toChatId(),
+                    "Я могу сказать, что где находится! Напиши или выбери из списка интересующее место или введи ${BaseCommands.back.asText}, чтобы вернуться на шаг назад",
                     replyMarkup = replyKeyboard(resizeKeyboard = true, oneTimeKeyboard = true) {
                         (places).forEach { place ->
                             +SimpleKeyboardButton(place)
@@ -44,12 +48,12 @@ fun LocationsState.Companion.register(
                     }
                 )
             } else {
-                it.silentEnter = false
+                state.silentEnter = false
             }
 
 
-            val text = it.enterText?.let { enterText -> it.enterText = null; TextContent(enterText) }
-                ?: waitText().first()
+            val text = state.enterText?.let { enterText -> state.enterText = null; TextContent(enterText) }
+                ?: waitText(filter = { it.chat.id.toChatId() == state.context }).first()
 
 
             val place = repo.getPlace(text.text)
@@ -57,12 +61,12 @@ fun LocationsState.Companion.register(
             place?.let { place ->
 
                 val locationMessage = sendStaticLocation(
-                    it.context.toChatId(),
+                    state.context.toChatId(),
                     StaticLocation(place.location.longitude, place.location.latitude),
                     disableNotification = true,
                 )
                 sendMessage(
-                    it.context.toChatId(),
+                    state.context.toChatId(),
                     buildEntities {
                         boldln(place.name)
                         +"\n"
@@ -72,17 +76,17 @@ fun LocationsState.Companion.register(
                     },
                     replyToMessageId = locationMessage.messageId
                 )
-            }
+            } ?: sendMessage(state.context.toChatId(), "Упс... Я не знаю такого места. Уточни свой запрос")
 
             when {
                 text.isCommand(BaseCommands.back) || text.text == BaseText.back.makeString() -> {
-                    it.toExpectRootCommandOrAnswerState()
+                    state.toExpectRootCommandOrAnswerState()
                 }
-                text.isCommand(BaseCommands.stop) -> it.toStopState()
+                text.isCommand(BaseCommands.stop) -> state.toStopState()
                 place != null -> {
-                    it.toExpectRootCommandOrAnswerState(silentEnter = true)
+                    state.toExpectRootCommandOrAnswerState(silentEnter = true)
                 }
-                else -> it
+                else -> state
             }
 
         }
