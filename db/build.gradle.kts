@@ -28,7 +28,7 @@ dependencies {
     // string utils such as Levenshtein distance
     implementation("org.apache.commons:commons-text:1.9")
 
-    implementation("dev.inmo:micro_utils.fsm.common:0.10.1")
+    implementation("dev.inmo:micro_utils.fsm.common:0.10.5")
 
 
     implementation(project(":core"))

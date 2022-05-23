@@ -1,7 +1,7 @@
 package com.techproj.polyhelpbot.fsm
 
 import dev.inmo.tgbotapi.extensions.utils.formatting.buildEntities
-import dev.inmo.tgbotapi.types.MessageEntity.textsources.botCommand
+import dev.inmo.tgbotapi.types.message.textsources.botCommand
 
 object BaseText {
     val back = buildEntities {

@@ -4,29 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b44d41c9-0433-421a-aaba-44be916a01b8" name="Changes" comment="user questions db">
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/techproj/polyhelpbot/UserQuestion.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/questions/UserQuestionDAO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/questions/UserQuestionKeyword.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/questions/UserQuestionKeywordsAssociationTable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/questions/UserQuestionsTable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/questions/repo/UserQuestionsRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/questions/repo/UserQuestionsRepositoryImpl.kt" afterDir="false" />
+    <list default="true" id="b44d41c9-0433-421a-aaba-44be916a01b8" name="Changes" comment="user questions db and beauty fixes">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/StateQuestionsDAO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/StatesQuestionsTable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/ChatStateDAO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/ChatStateTable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/connections/StateConnectionsDAO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/connections/StatesConnectionsTable.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/Base.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/Base.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExpectRootCommandOrTextState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExpectRootCommandOrTextState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/LocationsState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/LocationsState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/StatesManagerRepo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/StatesManagerRepo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/techproj/polyhelpbot/State.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/com/techproj/polyhelpbot/State.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/db/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/Repository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/Repository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/RepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/RepositoryImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/dbinit/InitialConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/dbinit/InitialConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/dbinit/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/dbinit/main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/locations/PhysicalPlaceKeyword.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/locations/PhysicalPlaceKeyword.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/locations/PhysicalPlaceLabel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/locations/PhysicalPlaceLabel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/locations/PhysicalPlacesTable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/locations/PhysicalPlacesTable.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/stringUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/stringUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/states/StateDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/states/StateDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/states/StateRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/states/StateRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/states/StatesTable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/states/UserStatesTable.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +46,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
-        <option value="Kotlin Object" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
+        <option value="Kotlin Object" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -68,7 +73,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;W:/Kotlin/Projects/PolyHelpBot/db/src/main/kotlin/com/techproj/polyhelpbot/questions&quot;,
+    &quot;last_opened_file_path&quot;: &quot;W:/Kotlin/Projects/PolyHelpBot/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -83,21 +88,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="W:\Kotlin\Projects\PolyHelpBot\db\src\main\kotlin\com\techproj\polyhelpbot\fsm\chat" />
       <recent name="W:\Kotlin\Projects\PolyHelpBot\db\src\main\kotlin\com\techproj\polyhelpbot\questions" />
       <recent name="W:\Kotlin\Projects\PolyHelpBot\db\src\main\kotlin\com\techproj\polyhelpbot\locations" />
       <recent name="W:\Kotlin\Projects\PolyHelpBot\db\src\main\kotlin\com\techproj\polyhelpbot" />
       <recent name="W:\Kotlin\Projects\PolyHelpBot\core\src\main\kotlin\com\techproj\polyhelpbot" />
-      <recent name="W:\Kotlin\Projects\PolyHelpBot\db\src\main\kotlin\com\techproj\polyhelpbot\states" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="W:\Kotlin\Projects\PolyHelpBot\db" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.techproj.polyhelpbot.fsm.chat" />
       <recent name="com.techproj.polyhelpbot.questions.repo" />
       <recent name="com.techproj.polyhelpbot.questions" />
       <recent name="com.techproj.polyhelpbot.locations" />
       <recent name="com.techproj.polyhelpbot" />
-      <recent name="com.techproj.polyhelpbot.db.locations" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -216,7 +221,11 @@
       <workItem from="1652729743188" duration="3203000" />
       <workItem from="1652782568398" duration="10232000" />
       <workItem from="1653000286414" duration="628000" />
-      <workItem from="1653226391696" duration="1072000" />
+      <workItem from="1653226391696" duration="28503000" />
+      <workItem from="1653298084398" duration="11533000" />
+      <workItem from="1653316618376" duration="202000" />
+      <workItem from="1653316873829" duration="5496000" />
+      <workItem from="1653322406890" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1650305080837</created>
@@ -239,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651776066228</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="user questions db and beauty fixes">
+      <created>1653227595909</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653227595909</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,10 +277,185 @@
     <MESSAGE value="Added ability to get locations:&#10;Where state, stop state, locations state&#10;Binding with remote DB" />
     <MESSAGE value="Database replacement.&#10;Added structure modules.&#10;DB config initialization&#10;Locations: search with Levenshtein distance algorithm" />
     <MESSAGE value="user questions db" />
-    <option name="LAST_COMMIT_MESSAGE" value="user questions db" />
+    <MESSAGE value="user questions db and beauty fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="user questions db and beauty fixes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt</url>
+          <line>43</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt</url>
+          <line>23</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt</url>
+          <line>45</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt</url>
+          <line>21</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt</url>
+          <line>63</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt</url>
+          <line>65</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt</url>
+          <line>36</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.21/b966557d3ee9d94f94e9660433b1773354a36003/tgbotapi.behaviour_builder.fsm-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>112</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.21/b966557d3ee9d94f94e9660433b1773354a36003/tgbotapi.behaviour_builder.fsm-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>136</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder.fsm-jvm/0.38.21/b966557d3ee9d94f94e9660433b1773354a36003/tgbotapi.behaviour_builder.fsm-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContextWithFSM.kt</url>
+          <line>133</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt</url>
+          <line>34</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/ExternalChatState.kt</url>
+          <line>25</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/BaseRepository.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/ChatStateDAO.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.9.24/daafda4c3e28467b5de11163875cc53ae8e48f8a/micro_utils.fsm.common-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/managers/DefaultStatesManager.kt</url>
+          <line>71</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt</url>
+          <line>46</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.10.1/177cee1d0134ed116bfc4321953a8dd0cb5ec172/micro_utils.fsm.common-jvm-0.10.1-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/managers/DefaultStatesManager.kt</url>
+          <line>92</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.fsm.common-jvm/0.10.1/177cee1d0134ed116bfc4321953a8dd0cb5ec172/micro_utils.fsm.common-jvm-0.10.1-sources.jar!/commonMain/dev/inmo/micro_utils/fsm/common/managers/DefaultStatesManager.kt</url>
+          <line>71</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/fsm/StatesManagerRepo.kt</url>
+          <line>29</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder-jvm/0.38.21/4a0fa1bfd8a178c586c8d9f2d1fe99ea16be481/tgbotapi.behaviour_builder-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/triggers_handling/MainTrigger.kt</url>
+          <line>16</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder-jvm/0.38.21/4a0fa1bfd8a178c586c8d9f2d1fe99ea16be481/tgbotapi.behaviour_builder-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContext.kt</url>
+          <line>121</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder-jvm/0.38.21/4a0fa1bfd8a178c586c8d9f2d1fe99ea16be481/tgbotapi.behaviour_builder-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContext.kt</url>
+          <line>119</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.coroutines-jvm/0.9.24/9acd8138f5f58412313308e90118162a2ca8af1a/micro_utils.coroutines-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/coroutines/FlowSubscriptionAsync.kt</url>
+          <line>70</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/tgbotapi.behaviour_builder-jvm/0.38.21/4a0fa1bfd8a178c586c8d9f2d1fe99ea16be481/tgbotapi.behaviour_builder-jvm-0.38.21-sources.jar!/commonMain/dev/inmo/tgbotapi/extensions/behaviour_builder/BehaviourContext.kt</url>
+          <line>131</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/dev.inmo/micro_utils.coroutines-jvm/0.9.24/9acd8138f5f58412313308e90118162a2ca8af1a/micro_utils.coroutines-jvm-0.9.24-sources.jar!/commonMain/dev/inmo/micro_utils/coroutines/FlowSubscriptionAsync.kt</url>
+          <line>73</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/backend/src/main/kotlin/com/techproj/polyhelpbot/main.kt</url>
+          <line>72</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt</url>
+          <line>30</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/db/src/main/kotlin/com/techproj/polyhelpbot/fsm/chat/StateRepositoryImpl.kt</url>
+          <line>44</line>
+          <properties class="com.techproj.polyhelpbot.fsm.chat.StateRepositoryImpl" method="getState">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PolyHelpBot$PolyHelpBot___backend_run_.ic" NAME="PolyHelpBot [:backend:run] Coverage Results" MODIFIED="1653315869516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -14,7 +14,7 @@ internal class StateRepositoryImpl(
 
     init {
         transaction {
-            SchemaUtils.create(StatesTable)
+            SchemaUtils.create(UserStatesTable)
         }
     }
 
@@ -25,11 +25,11 @@ internal class StateRepositoryImpl(
 
     override suspend fun removeState(state: ChatState): Unit = newSuspendedTransaction {
         addLogger(StdOutSqlLogger)
-        StatesTable.deleteWhere { StatesTable.chatId eq state.context }
+        UserStatesTable.deleteWhere { UserStatesTable.chatId eq state.context }
     }
 
     override suspend fun getState(chatId: ChatId): ChatState? =
-        StateDAO.filter(1) { StatesTable.chatId eq chatId }.firstOrNull()?.toModel()
+        StateDAO.filter(1) { UserStatesTable.chatId eq chatId }.firstOrNull()?.toModel()
 
     override suspend fun getAllStates(): List<ChatState> {
         return StateDAO.getAll().mapNotNull { it.toModel()?.also { it.silentEnter = true } }

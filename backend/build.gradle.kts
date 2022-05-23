@@ -25,7 +25,7 @@ application {
     mainClass.set(botMainClassName)
 }
 
-val tgbotapiVersion = "0.38.21"
+val tgbotapiVersion = "2.0.0"
 
 dependencies {
 

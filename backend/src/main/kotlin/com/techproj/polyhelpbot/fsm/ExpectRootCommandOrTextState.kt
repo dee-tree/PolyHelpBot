@@ -9,12 +9,14 @@ import dev.inmo.tgbotapi.extensions.behaviour_builder.expectations.waitText
 import dev.inmo.tgbotapi.extensions.behaviour_builder.strictlyOn
 import dev.inmo.tgbotapi.extensions.utils.types.buttons.replyKeyboard
 import dev.inmo.tgbotapi.extensions.utils.types.buttons.row
+import dev.inmo.tgbotapi.requests.abstracts.Request
 import dev.inmo.tgbotapi.types.BotCommand
-import dev.inmo.tgbotapi.types.ParseMode.MarkdownParseMode
 import dev.inmo.tgbotapi.types.buttons.SimpleKeyboardButton
+import dev.inmo.tgbotapi.types.message.MarkdownParseMode
 import dev.inmo.tgbotapi.types.message.content.TextContent
 import dev.inmo.tgbotapi.types.toChatId
 import dev.inmo.tgbotapi.utils.extensions.makeString
+import kotlinx.coroutines.flow.first
 
 fun ExpectRootCommandOrAnswerState.Companion.register(fsmBuilder: BehaviourContextWithFSM<ChatState>, repository: UserQuestionsRepository) {
     with(fsmBuilder) {
@@ -44,10 +46,10 @@ fun ExpectRootCommandOrAnswerState.Companion.register(fsmBuilder: BehaviourConte
                 }
             }
 
-
             val userText =
                 state.enterText?.let { enterText -> state.enterText = null; TextContent(enterText) }
-                    ?: waitText(filter = { it.chat.id == state.context.toChatId() }).first()
+                    ?: waitText().first()
+//                    ?: waitText(filter = { it.chat.id == state.context.toChatId() }).first()
 
             val question = repository.searchQuestion(userText.text)
 

@@ -8,15 +8,15 @@ import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 
 class StateDAO(id: EntityID<ChatId>) : Entity<ChatId>(id) {
-    companion object : EntityClass<ChatId, StateDAO>(StatesTable) {
+    companion object : EntityClass<ChatId, StateDAO>(UserStatesTable) {
         fun ChatState.newDAO() = StateDAO.new {
             this.stateId = this@newDAO.stateId.value
             this.chatId = this@newDAO.context
         }
     }
 
-    var chatId by StatesTable.chatId
-    var stateId by StatesTable.stateId
+    var chatId by UserStatesTable.chatId
+    var stateId by UserStatesTable.stateId
 
 
     fun toModel(): ChatState? {

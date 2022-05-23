@@ -10,14 +10,15 @@ import dev.inmo.tgbotapi.extensions.behaviour_builder.telegramBotWithBehaviourAn
 import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onCommand
 import dev.inmo.tgbotapi.extensions.behaviour_builder.triggers_handling.onText
 import dev.inmo.tgbotapi.extensions.utils.extensions.parseCommandsWithParams
-import dev.inmo.tgbotapi.types.MessageEntity.textsources.BotCommandTextSource
-import dev.inmo.tgbotapi.types.ParseMode.MarkdownParseMode
+import dev.inmo.tgbotapi.types.message.MarkdownParseMode
 import dev.inmo.tgbotapi.types.message.content.TextContent
+import dev.inmo.tgbotapi.types.message.textsources.BotCommandTextSource
 import dev.inmo.tgbotapi.types.toChatId
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 
 fun main(args: Array<String>) {
@@ -31,16 +32,22 @@ fun main(args: Array<String>) {
 
     runBlocking {
 
-        telegramBotWithBehaviourAndFSMAndStartLongPolling<ChatState>(
+        telegramBotWithBehaviourAndFSMAndStartLongPolling<NewChatState>(
             botToken,
             CoroutineScope(Dispatchers.IO),
+            onStateHandlingErrorHandler = { state, e ->
+                println("error in state: ${state}")
+                e.printStackTrace()
+                state
+            },
             statesManager = DefaultStatesManager(repo = fsmStatesRepo),
             defaultExceptionsHandler = {
                 System.err.println("Error occurred in bot ${it.printStack()}")
+                it.printStackTrace()
             }
 
         ) {
-            strictlyOn<StopState> {
+            strictlyOn<StopChatState> {
                 sendMessage(
                     it.context.toChatId(),
                     "Общение с ботом прекращено. Введите ${BaseCommands.start.asText}, чтобы вновь общаться со мной"
@@ -48,6 +55,11 @@ fun main(args: Array<String>) {
                 null
             }
 
+            /*onText {
+                println("chat: ${721935227}")
+                println("Current state: ${repo.getState(it.chat.id.toChatId())}")
+            }
+*/
 
             onText(initialFilter = { fsmStatesRepo.getContextState(it.chat.id) == null }) {
                 fsmStatesRepo.getContextState(it.chat.id)?.let { restoredChain ->
@@ -59,7 +71,7 @@ fun main(args: Array<String>) {
                     println("restored chain is null")
                     if (it.content.isCommand(BaseCommands.start)) {
                         sendMessage(it.chat.id, BaseText.helloMessage, parseMode = MarkdownParseMode)
-                        startChain(ExpectRootCommandOrAnswerState(it.chat.id.toChatId(), silentEnter = true))
+                        startChain(repo.getInitialExternalState(it.chat.id.toChatId()))
                     }
                 }
             }
@@ -69,8 +81,7 @@ fun main(args: Array<String>) {
             }
 
 
-            ExpectRootCommandOrAnswerState.register(this, repo)
-            LocationsState.register(this, repo)
+            ExternalChatState.register(this, repo)
 
         }.second.join()
     }

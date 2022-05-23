@@ -15,12 +15,13 @@ import dev.inmo.tgbotapi.extensions.utils.formatting.boldln
 import dev.inmo.tgbotapi.extensions.utils.formatting.buildEntities
 import dev.inmo.tgbotapi.extensions.utils.types.buttons.replyKeyboard
 import dev.inmo.tgbotapi.types.BotCommand
-import dev.inmo.tgbotapi.types.MessageEntity.textsources.botCommand
 import dev.inmo.tgbotapi.types.buttons.SimpleKeyboardButton
 import dev.inmo.tgbotapi.types.location.StaticLocation
 import dev.inmo.tgbotapi.types.message.content.TextContent
+import dev.inmo.tgbotapi.types.message.textsources.botCommand
 import dev.inmo.tgbotapi.types.toChatId
 import dev.inmo.tgbotapi.utils.extensions.makeString
+import kotlinx.coroutines.flow.first
 
 
 fun LocationsState.Companion.register(
@@ -53,7 +54,8 @@ fun LocationsState.Companion.register(
 
 
             val text = state.enterText?.let { enterText -> state.enterText = null; TextContent(enterText) }
-                ?: waitText(filter = { it.chat.id.toChatId() == state.context }).first()
+                ?: waitText().first()
+//                ?: waitText(filter = { it.chat.id.toChatId() == state.context }).first()
 
 
             val place = repo.getPlace(text.text)

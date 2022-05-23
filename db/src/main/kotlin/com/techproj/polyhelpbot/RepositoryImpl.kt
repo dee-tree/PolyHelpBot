@@ -1,12 +1,12 @@
 package com.techproj.polyhelpbot
 
 
+import com.techproj.polyhelpbot.fsm.chat.StateRepository
+import com.techproj.polyhelpbot.fsm.chat.StateRepositoryImpl
 import com.techproj.polyhelpbot.locations.LocationsRepository
 import com.techproj.polyhelpbot.locations.LocationsRepositoryImpl
 import com.techproj.polyhelpbot.questions.repo.UserQuestionsRepository
 import com.techproj.polyhelpbot.questions.repo.UserQuestionsRepositoryImpl
-import com.techproj.polyhelpbot.states.StateRepository
-import com.techproj.polyhelpbot.states.StateRepositoryImpl
 import org.jetbrains.exposed.sql.Database
 
 internal class RepositoryImpl(
