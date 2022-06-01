@@ -5,6 +5,7 @@ import com.techproj.polyhelpbot.StateConnection
 import com.techproj.polyhelpbot.StateId
 import com.techproj.polyhelpbot.fsm.ExternalStateConnection
 import com.techproj.polyhelpbot.fsm.StateQuestionsDAO
+import com.techproj.polyhelpbot.questions.UserQuestionDAO
 import com.techproj.polyhelpbot.toStateId
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -23,7 +24,7 @@ internal class StateConnectionsDAO(id: EntityID<Int>) : IntEntity(id)  {
                 this.initialStateId = StateQuestionsDAO[initialStateId.value]
                 this.variant = variant
                 this.destinationStateId = StateQuestionsDAO[destinationStateId.value]
-                // TODO Write answer id set: this.answerId =
+                this.answer = answerId?.value?.let { UserQuestionDAO.findById(it) } //answerId?.value
             }
         }
 
@@ -35,7 +36,6 @@ internal class StateConnectionsDAO(id: EntityID<Int>) : IntEntity(id)  {
                 this.initialStateId = StateQuestionsDAO[initialStateId.value]
                 this.variant = externalStateConnection.variant
                 this.destinationStateId = StateQuestionsDAO[externalStateConnection.stateId.value]
-                // TODO Write answer id set: this.answerId =
             }
         }
     }
@@ -43,7 +43,7 @@ internal class StateConnectionsDAO(id: EntityID<Int>) : IntEntity(id)  {
     var variant by StatesConnectionsTable.variant
     var initialStateId by StateQuestionsDAO referencedOn StatesConnectionsTable.initialStateId
     var destinationStateId by StateQuestionsDAO referencedOn StatesConnectionsTable.destinationStateId
-    var answerId by StatesConnectionsTable.answerId
+    var answer by UserQuestionDAO optionalReferencedOn StatesConnectionsTable.answer
 
-    fun toModel(): StateConnection = StateConnection(variant, destinationStateId.id.value.toStateId() , answerId?.let { AnswerId(it.value) })
+    fun toModel(): StateConnection = StateConnection(variant, destinationStateId.id.value.toStateId() , answer?.id?.value?.let { AnswerId(it) })
 }

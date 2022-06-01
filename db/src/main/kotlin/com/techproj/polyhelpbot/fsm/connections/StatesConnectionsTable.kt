@@ -8,6 +8,7 @@ object StatesConnectionsTable : IntIdTable() {
     val variant = varchar("variant", 255)
     val initialStateId = reference("initial_state_id", StatesQuestionsTable.id)
     val destinationStateId = reference("destination_state_id", StatesQuestionsTable.id)
-    val answerId = reference("answer_id", UserQuestionsTable.id).nullable()
+
+    val answer = reference("answer", UserQuestionsTable).nullable()
 
 }

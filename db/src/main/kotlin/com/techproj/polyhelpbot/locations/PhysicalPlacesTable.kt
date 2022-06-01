@@ -6,7 +6,6 @@ internal object PhysicalPlacesTable : IntIdTable() {
 
     val name = varchar("name", 255)
     val address = varchar("address", 255)
-    val help = varchar("help", 255).nullable()
 
     val latitude = double("latitude")
     val longitude = double("longitude")

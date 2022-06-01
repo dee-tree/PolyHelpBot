@@ -5,8 +5,7 @@ data class UserQuestion(
     val question: String,
     val keywords: List<Keyword>,
 
-    val answerStateId: StateId? = null,
     val answerStateTextEnter: String? = null,
 
-    val answer: String? = null
+    val answer: Answer
 )

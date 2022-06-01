@@ -12,7 +12,6 @@ internal class PhysicalPlaceDAO(id: EntityID<Int>) : Entity<Int>(id) {
         fun PhysicalPlace.newDAO(): PhysicalPlaceDAO = PhysicalPlaceDAO.new {
             name = this@newDAO.name
             address = this@newDAO.address
-            help = this@newDAO.help
             latitude = this@newDAO.location.latitude
             longitude = this@newDAO.location.longitude
         }
@@ -20,10 +19,6 @@ internal class PhysicalPlaceDAO(id: EntityID<Int>) : Entity<Int>(id) {
 
     var name by PhysicalPlacesTable.name
     var address by PhysicalPlacesTable.address
-    var help by PhysicalPlacesTable.help
-
-    var labels by PhysicalPlaceLabelDAO via PhysicalPlaceLabelsAssociationTable
-    var keywords by PhysicalPlaceKeywordDAO via PhysicalPlaceKeywordsAssociationTable
 
     var latitude by PhysicalPlacesTable.latitude
     var longitude by PhysicalPlacesTable.longitude
@@ -32,9 +27,6 @@ internal class PhysicalPlaceDAO(id: EntityID<Int>) : Entity<Int>(id) {
     fun toModel(): PhysicalPlace = PhysicalPlace(
         name,
         address,
-        help,
-        labels.map { it.toModel() },
-        keywords.map { it.toModel() },
         Geolocation(latitude, longitude)
     )
 }

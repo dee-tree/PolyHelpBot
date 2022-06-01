@@ -1,11 +1,9 @@
 package com.techproj.polyhelpbot.fsm
 
-import com.techproj.polyhelpbot.ExternalChatState
-import com.techproj.polyhelpbot.NewChatState
-import com.techproj.polyhelpbot.StopChatState
+import com.techproj.polyhelpbot.*
 import com.techproj.polyhelpbot.fsm.chat.StateRepository
 import com.techproj.polyhelpbot.fsm.chat.nextExternalStateViaVariant
-import com.techproj.polyhelpbot.isCommand
+import com.techproj.polyhelpbot.questions.repo.UserQuestionsRepository
 import dev.inmo.tgbotapi.extensions.api.send.sendMessage
 import dev.inmo.tgbotapi.extensions.behaviour_builder.BehaviourContextWithFSM
 import dev.inmo.tgbotapi.extensions.behaviour_builder.expectations.waitText
@@ -16,13 +14,13 @@ import dev.inmo.tgbotapi.types.message.content.TextContent
 import dev.inmo.tgbotapi.types.toChatId
 import kotlinx.coroutines.flow.first
 
-fun ExternalChatState.Companion.register(fsmBuilder: BehaviourContextWithFSM<NewChatState>, repo: StateRepository) {
+fun ExternalChatState.Companion.register(fsmBuilder: BehaviourContextWithFSM<NewChatState>, repo: StateRepository, answersRepo: UserQuestionsRepository) {
     with(fsmBuilder) {
         strictlyOn<ExternalChatState, NewChatState>() {state ->
             println("we are on $state")
 
             if (!state.silentEnter) {
-                sendMessage(state.context.toChatId(), "Таак...",  replyMarkup = replyKeyboard(resizeKeyboard = true) {
+                val msg = sendMessage(state.context.toChatId(), "Я в ожидании следующей команды",  replyMarkup = replyKeyboard(resizeKeyboard = true) {
                     state.variants.forEach {
                         +SimpleKeyboardButton(it.variant)
                     }
@@ -34,18 +32,24 @@ fun ExternalChatState.Companion.register(fsmBuilder: BehaviourContextWithFSM<New
 
             val userAnswer = state.enterText?.let { enterText -> state.enterText = null; TextContent(enterText) }
                 ?: waitText().first()
-//                ?: waitText(filter = { it.chat.id == state.context.toChatId() }).first()
 
-            val nextStateViaVariant = state.nextExternalStateViaVariant(repo, userAnswer.text) //?: state
+            val variant = state.findVariant(userAnswer.text)
+            variant?.answerId?.let { answerId ->
+                val answer = answersRepo.searchQuestion(answerId.value)!!.answer
+                sendMessage(state.context, answer)
+
+            }
+            val nextStateViaVariant = variant?.let { state.nextExternalStateViaVariant(repo, it) }
+            nextStateViaVariant ?: sendMessage(state.context.toChatId(), "Выбери команду из предложенных")
+            if (nextStateViaVariant?.stateId == state.stateId) {
+                nextStateViaVariant.silentEnter = true
+            }
 
             when {
                 userAnswer.isCommand(BaseCommands.stop) -> StopChatState(state.context)
-                nextStateViaVariant != null -> {
-                    println("go to state ${nextStateViaVariant}"); nextStateViaVariant }
+                nextStateViaVariant != null -> nextStateViaVariant
 
-                else -> {
-                    println("lol null next state")
-                    println("Stay at state ${state}") ; state}
+                else -> { state.copy(silentEnter = true) }
             }
 
         }

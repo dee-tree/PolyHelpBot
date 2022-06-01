@@ -31,8 +31,6 @@ suspend fun ExternalChatState.nextExternalStateViaVariant(
     repo: StateRepository,
     selectedVariant: String
 ): ExternalChatState? {
-    return variants
-        .find { it.variant == selectedVariant }
-        ?.let { return repo.getExternalState(context, it.stateId) }
+    return findVariant(selectedVariant)?.let { repo.getExternalState(context, it.stateId) }
 }
 

@@ -18,7 +18,6 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import kotlin.concurrent.thread
 
 
 fun main(args: Array<String>) {
@@ -50,16 +49,11 @@ fun main(args: Array<String>) {
             strictlyOn<StopChatState> {
                 sendMessage(
                     it.context.toChatId(),
-                    "Общение с ботом прекращено. Введите ${BaseCommands.start.asText}, чтобы вновь общаться со мной"
+                    "Общение с ботом прекращено. Введите ${BaseCommands.start.asText}, чтобы вновь общаться со мной",
+                    replyMarkup = null
                 )
                 null
             }
-
-            /*onText {
-                println("chat: ${721935227}")
-                println("Current state: ${repo.getState(it.chat.id.toChatId())}")
-            }
-*/
 
             onText(initialFilter = { fsmStatesRepo.getContextState(it.chat.id) == null }) {
                 fsmStatesRepo.getContextState(it.chat.id)?.let { restoredChain ->
@@ -81,7 +75,7 @@ fun main(args: Array<String>) {
             }
 
 
-            ExternalChatState.register(this, repo)
+            ExternalChatState.register(this, repo, repo)
 
         }.second.join()
     }
